@@ -1,5 +1,16 @@
 #!/bin/bash
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /tmp/tls.key -out /tmp/tls.crt -subj "/CN=k8s.cmos.cn"
+host=$1
+if [ "$host" == "" ]; then
+  echo  "please add host domain param"	
+  exit
+fi
+secretname=$2
+if [ "$secretname" == "" ]; then
+  echo  "please add secretname param"  
+  exit
+fi
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /tmp/tls.key -out /tmp/tls.crt -subj "/CN=$host"
 
 crt=`base64 /tmp/tls.crt`
 echo $crt > crt.txt
@@ -15,12 +26,12 @@ echo "
 apiVersion: v1
 kind: Secret
 metadata:
-  name: k8s-secret
+  name: $secretname
 data:
   tls.crt: $crt
-  tls.key: $key" > k8s-secret.yaml
+  tls.key: $key" > $secretname.yaml
 
 #del useless txt
 rm crt.txt key.txt
 ####create secret into k8s with domain k8s.cmos.cn
-kubectl create -f k8s-secret.yaml
+kubectl create -f $secretname.yaml
