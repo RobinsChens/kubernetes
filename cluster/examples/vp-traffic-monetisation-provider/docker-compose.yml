@@ -1,0 +1,13 @@
+vp-traffic-monetisation-provider:
+#  image: vp-traffic-monetisation-provider
+  image: hub.docker.vpclub.cn/vpclub_containers/vp-traffic-monetisation-provider
+  net: host
+  command: java -Xmx128m -Xss256k -jar /app.jar --spring.profiles.active=test
+#  environment:
+#    HOSTNAME: vpclub
+#
+#  extra_hosts:
+#    vpclub: 172.16.5.23
+  log_driver: syslog
+  log_opt:
+      syslog-address: "tcp://172.16.45.3:5000"

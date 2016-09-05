@@ -1,0 +1,33 @@
+server:
+  port: 10020
+shell:
+  ssh:
+    port: 33020
+  auth:
+    simple:
+      user:
+        name: vpclub
+        password: vp01b#6
+spring:
+  data:
+     mongodb:
+       host: 172.16.45.3
+       port: 27017
+       database: admin
+  dubbo:
+    consumer:
+      check: false
+    protocol:
+      name: dubbo
+      port: 23020
+      accesslog: true
+
+    provider:
+      timeout: 3000
+      retries: 1
+      delay: -1
+
+    registry:
+      address: zookeeper://172.16.45.3:2181
+      register: true
+      subscribe: true
