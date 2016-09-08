@@ -81,7 +81,7 @@ ENABLE_NODE_LOGGING=false
 LOGGING_DESTINATION=${LOGGING_DESTINATION:-elasticsearch}
 
 # Optional: When set to true, Elasticsearch and Kibana will be setup as part of the cluster bring up.
-ENABLE_CLUSTER_LOGGING=false
+ENABLE_CLUSTER_LOGGING=true
 ELASTICSEARCH_LOGGING_REPLICAS=${ELASTICSEARCH_LOGGING_REPLICAS:-1}
 
 # Optional: When set to true, heapster, Influxdb and Grafana will be setup as part of the cluster bring up.
