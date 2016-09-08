@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: traffic-consumertest
+  name: netisation-consumer-rc
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: traffic-contest
+        app: netisation-consumer
     spec:
       imagePullSecrets:
       - name: aliregistrykey
       containers:
-      - name: vp-traffic-monetisation-consumertest
-        image: hub.docker.vpclub.cn/vpclub_containers/vp-traffic-monetisation-consumertest:1.0.0
-        env:
-        - name: PROFILE
-          value: 'test'
+      - name: vp-traffic-monetisation-consumer
+        image: hub.docker.vpclub.cn/vpclub/java:8
         ports:
         - containerPort: 10020
+        env:
+        - name: PROFILE
+          value: test
+        ports:
         volumeMounts:
-        - mountPath: /app
-          name: test-volume
+        - name: netisation-consumer-vol
+          mountPath: /app
       volumes:
-      - name: test-volume
+      - name: netisation-consumer-vol
         hostPath:
-  # directory location on host
-          path: /tmp/vp-traffic-monetisation-consumer/app
+          path: ./app

@@ -18,15 +18,15 @@ spec:
         - containerPort: 10020
         env:
         - name: PROFILE
-          value: ${profile}
+          value: test
         ports:
-        volumeMounts:
-        - name: netisation-consumer-vol
-          mountPath: /app/logs
-      volumes:
-      - name: netisation-consumer-vol
-        hostPath:
-          path: /tmp/vp-traffic-monetisation-consumer/app/logs
+#        volumeMounts:
+#        - name: netisation-consumer-vol
+#          mountPath: /app/logs
+#      volumes:
+#      - name: netisation-consumer-vol
+#        hostPath:
+#          path: /tmp/vp-traffic-monetisation-consumer/app/logs
 ####
 apiVersion: v1
 kind: Service

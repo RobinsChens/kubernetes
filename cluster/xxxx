@@ -1,0 +1,29 @@
+echo "
+apiVersion: v1
+kind: Secret
+metadata:
+  name: foo-secret
+data:
+  tls.crt: '`base64 /tmp/tls.crt`'
+  tls.key: '`base64 /tmp/tls.key`'
+" | kubectl create -f -
+
+
+server 172.16.32.7:80;
+#Run as root user
+echo "1.Checking user..."
+echo "1.正在检测用户..."
+sleep 1
+if [ $UID = 0 ];then
+	echo -e "\033[32m\tAll good...\033[0m"
+	echo -e "\033[32m\t权限检测正确...\033[0m"
+else
+	echo -e "\033[31m\tYou must run as root.\033[0m"
+	echo -e "\033[31m\t请用root用户执行此脚本。\033[0m"
+	exit
+fi
+
+sleep 1
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCb8My7LpVNkpPXUSClaFWzVDcA10Whe9KDKpVF++fzH6wqsdwTT0sUhjIhd7PHBuhxmTM/nghWuGbXQa1IMCt8vVFRJ2RGADOiu/xUvrNS9BRD6vUtKOoqopW01zbwhib2DOGjDbDSFGCW/5Hk4ELpky26VKGbezNUAhc1LOQhoc+yTodNagABuO2lDRws/pRE5wG6HX1h5Y+GY0bMGHQ9/VgyC9bROQStwHn4R8aDne4XY2vAEfe2jTk6X4B6Aq/1gh1xQX4OJgYdrxS7COa29l53BEEhG7DOMrXPOA8rMjR2M279ZG5D7RLGGnCWlz+u6E2/ErOqXhp6xJkW/AEzlrot8t/8X4NrGHL0MdBLm+shUZytV8Ko6mO4oF9k1EhxeEEJ9P10iUQCoZVN71amG30g6b7drgXerlIWDMxkjqpv6YWuZR8BmBF9y0yVZEfV8gpuEnwc/OMzqz8cnmUwhlM02Zju8xN9zy8iCJwAiTZM7QUWkYMZKJ7isA9SNapcivNA4jfZw+lbAWgs/mUhpVh8vvdP4r8ElNqwhe5bBGpsmj9oLuGga/FdOIv4NIwS2yBsyUO30b838ZnPFuDNSJJJuaT4kMFA/8fZ2EHPe77bm5zW72RcmRnvDlNiVAIH2qJLVeK/jUIzgWWlSXxmA2K+X0eeuZU+2hQLVuiQxw== fang.bo@vpclub.cn
