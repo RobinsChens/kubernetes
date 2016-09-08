@@ -18,7 +18,7 @@ IMAGE = fluentd-elasticsearch
 TAG = 1.19
 
 build:	
-	docker build -t gcr.io/google_containers/$(IMAGE):$(TAG) .
+	docker build -t hub.docker.vpclub.cn/vpclub_containers/$(IMAGE):$(TAG) .
 
 push:	
-	gcloud docker --server=gcr.io push gcr.io/google_containers/$(IMAGE):$(TAG)
+	docker --server=hub.docker.vpclub.cn push hub.docker.vpclub.cn/vpclub_containers/$(IMAGE):$(TAG)
