@@ -24,3 +24,6 @@ spec:
           hostPort: 80
         - containerPort: 443
           hostPort: 443
+        - containerPort: 18080
+          hostPort: 18080
+
