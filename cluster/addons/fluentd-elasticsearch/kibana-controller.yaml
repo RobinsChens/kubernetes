@@ -19,6 +19,8 @@ spec:
         version: v1
         kubernetes.io/cluster-service: "true"
     spec:
+      imagePullSecrets:
+      - name: aliregistrykey
       containers:
       - name: kibana-logging
         image: hub.docker.vpclub.cn/vpclub_containers/kibana:1.3

@@ -21,4 +21,4 @@ build:
 	docker build -t hub.docker.vpclub.cn/vpclub_containers/$(IMAGE):$(TAG) .
 
 push:	
-	docker --server=hub.docker.vpclub.cn push hub.docker.vpclub.cn/vpclub_containers/$(IMAGE):$(TAG)
+	docker  push hub.docker.vpclub.cn/vpclub_containers/$(IMAGE):$(TAG)

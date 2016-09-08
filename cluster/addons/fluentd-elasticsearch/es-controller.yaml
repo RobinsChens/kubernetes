@@ -19,6 +19,8 @@ spec:
         version: v1
         kubernetes.io/cluster-service: "true"
     spec:
+      imagePullSecrets:
+      - name: aliregistrykey
       containers:
       - image: hub.docker.vpclub.cn/vpclub_containers/elasticsearch:1.9
         name: elasticsearch-logging         
