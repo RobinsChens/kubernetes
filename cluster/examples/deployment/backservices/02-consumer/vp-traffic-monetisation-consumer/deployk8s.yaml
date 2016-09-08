@@ -9,14 +9,24 @@ spec:
       labels:
         app: netisation-consumer 
     spec:
+      imagePullSecrets:
+      - name: aliregistrykey
       containers:
       - name: vp-traffic-monetisation-consumer
         image: hub.docker.vpclub.cn/vpclub_containers/vp-traffic-monetisation-consumer
         ports:
         - containerPort: 10020
-#        - port: 10010
-      imagePullSecrets:
-      - name: aliregistrykey
+        env:
+        - name: PROFILE
+          value: ${profile}
+        ports:
+        volumeMounts:
+        - name: netisation-consumer-vol
+          mountPath: /app/logs
+      volumes:
+      - name: netisation-consumer-vol
+        hostPath:
+          path: /tmp/vp-traffic-monetisation-consumer/app/logs
 ####
 apiVersion: v1
 kind: Service
