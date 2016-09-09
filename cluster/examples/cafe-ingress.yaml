@@ -21,7 +21,7 @@ spec:
 #          servicePort: 80
       - path: /traffic
         backend:
-          serviceName: trafficcon-svc
+          serviceName: netisation-consumer-svc
           servicePort: 80
       - path: /app/kibana
         backend:

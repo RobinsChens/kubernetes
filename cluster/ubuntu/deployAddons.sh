@@ -48,9 +48,9 @@ function deploy_dns {
       
   if [ ! "$KUBEDNS" ]; then
     # use kubectl to create skydns rc and service
-    ${KUBECTL} --namespace=kube-system replace -f skydns-rc.yaml 
-    ${KUBECTL} --namespace=kube-system replace -f skydns-svc.yaml
-
+ #   ${KUBECTL} --namespace=kube-system create -f skydns-rc.yaml 
+ #   ${KUBECTL} --namespace=kube-system create -f skydns-svc.yaml
+    ./deploySkyDns.sh
     echo "Kube-dns rc and service is successfully deployed."
   else
     echo "Kube-dns rc and service is already deployed. Skipping."
@@ -64,14 +64,14 @@ function deploy_dashboard {
         echo "Kubernetes Dashboard replicationController already exists"
     else
         echo "Creating Kubernetes Dashboard replicationController"
-        ${KUBECTL} create -f ${KUBE_ROOT}/cluster/addons/dashboard/dashboard-controller.yaml
+        ${KUBECTL} --namespace=kube-system create -f ${KUBE_ROOT}/cluster/addons/dashboard/dashboard-controller.yaml
     fi
 
     if ${KUBECTL} get service/kubernetes-dashboard --namespace=kube-system &> /dev/null; then
         echo "Kubernetes Dashboard service already exists"
     else
         echo "Creating Kubernetes Dashboard service"
-        ${KUBECTL} create -f ${KUBE_ROOT}/cluster/addons/dashboard/dashboard-service.yaml
+        ${KUBECTL} --namespace=kube-system create  -f ${KUBE_ROOT}/cluster/addons/dashboard/dashboard-service.yaml
     fi
 
   echo

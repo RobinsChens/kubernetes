@@ -6,6 +6,8 @@ metadata:
   labels:
     k8s-app: fluentd-logging
 spec:
+  imagePullSecrets:
+  - name: aliregistrykey  
   containers:
   - name: fluentd-elasticsearch
     image: hub.docker.vpclub.cn/vpclub_containers/fluentd-elasticsearch:1.19
