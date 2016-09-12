@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: elasticsearch-ingress
+spec:
+  tls:
+  - hosts:
+    - elasticsearch.vpclub.com
+    secretName: elasticsearch-secret
+  rules:
+  - host: elasticsearch.vpclub.com
+    http:
+      paths:
+#      - path: /tea
+#        backend:
+#          serviceName: tea-svc
+#          servicePort: 80
+#      - path: /coffee
+#        backend:
+#          serviceName: coffee-svc
+#          servicePort: 80
+      - path: /
+        backend:
+          serviceName: elasticsearch
+          servicePort: 80
