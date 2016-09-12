@@ -52,4 +52,4 @@ COPY logstash.conf /
 #COPY docker-entrypoint.sh /
 
 #ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["-e", ""]
+#CMD ["-e", ""]
