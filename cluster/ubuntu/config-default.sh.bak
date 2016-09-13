@@ -18,17 +18,17 @@
 
 # Define all your cluster nodes, MASTER node comes first"
 # And separated with blank space like <user_1@ip_1> <user_2@ip_2> <user_3@ip_3>
-export nodes=${nodes:-"root@172.16.2.234 root@172.16.2.233 root@173.16.5.23"}
+export nodes=${nodes:-"root@172.16.2.234 root@172.16.2.233"}
 
 # Define all your nodes role: a(master) or i(minion) or ai(both master and minion),
 # Roles must be the same order with the nodes.
-roles=${roles:-"a i i"}
+roles=${roles:-"a i"}
 # If it practically impossible to set an array as an environment variable
 # from a script, so assume variable is a string then convert it to an array
 export roles_array=($roles)
 
 # Define minion numbers
-export NUM_NODES=${NUM_NODES:-2}
+export NUM_NODES=${NUM_NODES:-1}
 # define the IP range used for service cluster IPs.
 # according to rfc 1918 ref: https://tools.ietf.org/html/rfc1918 choose a private ip range here.
 export SERVICE_CLUSTER_IP_RANGE=${SERVICE_CLUSTER_IP_RANGE:-192.168.3.0/24}  # formerly PORTAL_NET
@@ -55,7 +55,7 @@ CNI_KUBELET_TRIGGER=${CNI_KUBELET_TRIGGER:-networking}
 # Flannel networking is used if CNI networking is not.  The following
 # variable defines the CIDR block from which cluster addresses are
 # drawn.
-export FLANNEL_NET=${FLANNEL_NET:-172.16.0.0/16}
+export FLANNEL_NET=${FLANNEL_NET:-10.1.0.0/16}
 
 # Optionally add other contents to the Flannel configuration JSON
 # object normally stored in etcd as /coreos.com/network/config.  Use
@@ -69,7 +69,7 @@ FLANNEL_OTHER_NET_CONFIG=''
 # Admission Controllers to invoke prior to persisting objects in cluster
 # If we included ResourceQuota, we should keep it at the end of the list to prevent incremeting quota usage prematurely.
 export ADMISSION_CONTROL=NamespaceLifecycle,LimitRanger,ServiceAccount,SecurityContextDeny,DefaultStorageClass,ResourceQuota
-
+#export ADMISSION_CONTROL=NamespaceLifecycle,LimitRanger,ServiceAccount,SecurityContextDeny,ResourceQuota
 # Path to the config file or directory of files of kubelet
 export KUBELET_CONFIG=${KUBELET_CONFIG:-""}
 
@@ -77,11 +77,11 @@ export KUBELET_CONFIG=${KUBELET_CONFIG:-""}
 SERVICE_NODE_PORT_RANGE=${SERVICE_NODE_PORT_RANGE:-"30000-32767"}
 
 # Optional: Enable node logging.
-ENABLE_NODE_LOGGING=false
+ENABLE_NODE_LOGGING=true
 LOGGING_DESTINATION=${LOGGING_DESTINATION:-elasticsearch}
 
 # Optional: When set to true, Elasticsearch and Kibana will be setup as part of the cluster bring up.
-ENABLE_CLUSTER_LOGGING=false
+ENABLE_CLUSTER_LOGGING=true
 ELASTICSEARCH_LOGGING_REPLICAS=${ELASTICSEARCH_LOGGING_REPLICAS:-1}
 
 # Optional: When set to true, heapster, Influxdb and Grafana will be setup as part of the cluster bring up.
@@ -99,6 +99,7 @@ KUBE_PROXY_EXTRA_OPTS=${KUBE_PROXY_EXTRA_OPTS:-""}
 ENABLE_CLUSTER_DNS="${KUBE_ENABLE_CLUSTER_DNS:-true}"
 # DNS_SERVER_IP must be a IP in SERVICE_CLUSTER_IP_RANGE
 DNS_SERVER_IP=${DNS_SERVER_IP:-"192.168.3.10"}
+#
 DNS_DOMAIN=${DNS_DOMAIN:-"cluster.local"}
 DNS_REPLICAS=${DNS_REPLICAS:-1}
 

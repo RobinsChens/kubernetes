@@ -17,10 +17,6 @@ spec:
       requests:
         cpu: 100m
         memory: 200Mi
-#add env
-    env:
-    - name: FLUENTD_ARGS
-      value: -q
     volumeMounts:
     - name: varlog
       mountPath: /var/log

@@ -20,6 +20,7 @@ set -e
 
 KUBE_ROOT=$(dirname "${BASH_SOURCE}")/../..
 source "config-default.sh"
+echo "DNS_DOMAIN: $DNS_DOMAIN"
 KUBECTL="${KUBE_ROOT}/cluster/kubectl.sh"
 export KUBECTL_PATH="${KUBE_ROOT}/cluster/ubuntu/binaries/kubectl"
 export KUBE_CONFIG_FILE=${KUBE_CONFIG_FILE:-${KUBE_ROOT}/cluster/ubuntu/config-default.sh}
@@ -35,7 +36,8 @@ function init {
   else
     echo "The namespace 'kube-system' is already there. Skipping."
   fi 
-
+  echo "Creating aliyun secret..."
+  ./create-alisecret.sh 
   echo
 }
 
@@ -48,9 +50,9 @@ function deploy_dns {
       
   if [ ! "$KUBEDNS" ]; then
     # use kubectl to create skydns rc and service
- #   ${KUBECTL} --namespace=kube-system create -f skydns-rc.yaml 
- #   ${KUBECTL} --namespace=kube-system create -f skydns-svc.yaml
-    ./deploySkyDns.sh
+    ${KUBECTL} --namespace=kube-system create -f skydns-rc.yaml 
+    ${KUBECTL} --namespace=kube-system create -f skydns-svc.yaml
+#    ./deploySkyDns.sh
     echo "Kube-dns rc and service is successfully deployed."
   else
     echo "Kube-dns rc and service is already deployed. Skipping."

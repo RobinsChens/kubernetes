@@ -22,13 +22,13 @@ export nodes=${nodes:-"root@172.16.2.234 root@172.16.2.233"}
 
 # Define all your nodes role: a(master) or i(minion) or ai(both master and minion),
 # Roles must be the same order with the nodes.
-roles=${roles:-"ai i"}
+roles=${roles:-"a i"}
 # If it practically impossible to set an array as an environment variable
 # from a script, so assume variable is a string then convert it to an array
 export roles_array=($roles)
 
 # Define minion numbers
-export NUM_NODES=${NUM_NODES:-2}
+export NUM_NODES=${NUM_NODES:-1}
 # define the IP range used for service cluster IPs.
 # according to rfc 1918 ref: https://tools.ietf.org/html/rfc1918 choose a private ip range here.
 export SERVICE_CLUSTER_IP_RANGE=${SERVICE_CLUSTER_IP_RANGE:-192.168.3.0/24}  # formerly PORTAL_NET
@@ -55,7 +55,7 @@ CNI_KUBELET_TRIGGER=${CNI_KUBELET_TRIGGER:-networking}
 # Flannel networking is used if CNI networking is not.  The following
 # variable defines the CIDR block from which cluster addresses are
 # drawn.
-export FLANNEL_NET=${FLANNEL_NET:-172.16.0.0/16}
+export FLANNEL_NET=${FLANNEL_NET:-10.1.0.0/16}
 
 # Optionally add other contents to the Flannel configuration JSON
 # object normally stored in etcd as /coreos.com/network/config.  Use
@@ -99,6 +99,7 @@ KUBE_PROXY_EXTRA_OPTS=${KUBE_PROXY_EXTRA_OPTS:-""}
 ENABLE_CLUSTER_DNS="${KUBE_ENABLE_CLUSTER_DNS:-true}"
 # DNS_SERVER_IP must be a IP in SERVICE_CLUSTER_IP_RANGE
 DNS_SERVER_IP=${DNS_SERVER_IP:-"192.168.3.10"}
+#
 DNS_DOMAIN=${DNS_DOMAIN:-"cluster.local"}
 DNS_REPLICAS=${DNS_REPLICAS:-1}
 
