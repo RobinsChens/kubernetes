@@ -23,7 +23,7 @@ spec:
         backend:
           serviceName: netisation-consumer-svc
           servicePort: 80
-      - path: /app/kibana
+      - path: /
         backend:
-          serviceName: kibana
+          serviceName: kibana-logging
           servicePort: 80

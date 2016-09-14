@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: fluentd-elasticsearch
+  name: fluentd-logging
   namespace: kube-system
   labels:
     k8s-app: fluentd-logging
 spec:
-#  imagePullSecrets:
-#  - name: aliregistrykey  
+  imagePullSecrets:
+  - name: aliregistrykey  
   dnsPolicy: "ClusterFirst"
   containers:
-  - name: fluentd-elasticsearch
-    image: fabric8/fluentd-kubernetes
-#    image: hub.docker.vpclub.cn/vpclub_containers/fluentd-elasticsearch:1.19
+  - name: fluentd-logging
+#    image: fabric8/fluentd-kubernetes
+    image: hub.docker.vpclub.cn/vpclub_containers/fluentd-elasticsearch:1.20
     resources:
       limits:
         memory: 200Mi
@@ -21,8 +21,8 @@ spec:
         memory: 200Mi
     env:
     - name: ES_HOST
-      value: http://192.168.3.143
-#      value: http://elasticsearch.kube-system.svc
+#      value: http://192.168.3.143
+      value: http://elasticsearch.kube-system.svc
     - name: ES_PORT
       value: "9200"    
     - name: TZ

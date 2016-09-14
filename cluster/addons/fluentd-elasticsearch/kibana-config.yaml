@@ -1,0 +1,29 @@
+apiVersion: v1beta1
+  kind: Config
+  id: kibana-config
+  items:
+    - apiVersion: v1beta1
+      kind: Pod
+      id: kibana-pod
+      desiredState:
+        manifest:
+          version: v1beta1
+          id: kibana-server
+          containers:
+            - name: kibana-image
+              image: fabric8/kibana4:latest
+              ports:
+                - name: kibana-port
+                  containerPort: 5601
+              env:
+                - name: ELASTICSEARCH_SERVICE_NAME
+                  value: ELASTICSEARCH
+      labels:
+        app: kibana-viewer
+    - apiVersion: v1beta1
+      kind: Service
+      id: kibana-service
+      containerPort: kibana-port
+      port: 5601
+      selector:
+        app: kibana-viewer
