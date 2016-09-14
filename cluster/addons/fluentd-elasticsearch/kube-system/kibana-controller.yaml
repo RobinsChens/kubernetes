@@ -23,7 +23,7 @@ spec:
       - name: aliregistrykey
       containers:
       - name: kibana-logging
-        image: hub.docker.vpclub.cn/vpclub_containers/kibana:1.5
+        image: hub.docker.vpclub.cn/vpclub_containers/kibana:1.5-1
         resources:
           # keep request = limit to keep this container in guaranteed class
           limits:

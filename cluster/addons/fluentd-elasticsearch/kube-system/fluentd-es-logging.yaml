@@ -11,7 +11,7 @@ spec:
   dnsPolicy: "ClusterFirst"
   containers:
   - name: fluentd-logging
-    image: hub.docker.vpclub.cn/vpclub_containers/fluentd-elasticsearch:1.20-1
+    image: hub.docker.vpclub.cn/vpclub_containers/fluentd-elasticsearch:1.20-2
     resources:
       limits:
         memory: 200Mi
