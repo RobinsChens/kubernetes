@@ -15,7 +15,7 @@
 .PHONY:	build push
 
 IMAGE = fluentd-elasticsearch
-TAG = 1.20-1
+TAG = 1.20-2
 
 build:	
 	docker build -t hub.docker.vpclub.cn/vpclub_containers/$(IMAGE):$(TAG) .

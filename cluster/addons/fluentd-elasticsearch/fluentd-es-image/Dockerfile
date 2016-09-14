@@ -38,5 +38,7 @@ COPY td-agent.conf /etc/td-agent/td-agent.conf
 COPY build.sh /tmp/build.sh
 RUN /tmp/build.sh
 
+COPY run.sh /tmp/run.sh
+RUN chmod + /tmp/run.sh
 # Run the Fluentd service.
-ENTRYPOINT ["td-agent"]
+ENTRYPOINT ["/tmp/run.sh"]

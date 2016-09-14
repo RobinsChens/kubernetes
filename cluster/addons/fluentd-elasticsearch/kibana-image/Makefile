@@ -14,7 +14,7 @@
 
 .PHONY:	build push
 
-TAG = 1.3
+TAG = 1.5-1
 
 build:
 	docker build -t hub.docker.vpclub.cn/vpclub_containers/kibana:$(TAG) .

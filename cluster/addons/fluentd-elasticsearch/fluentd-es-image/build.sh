@@ -14,8 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #insert ELASTICSEARCH_URL
-echo ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
-sed -i "s/\${ELASTICSEARCH_URL}/${ELASTICSEARCH_URL}/g" /etc/td-agent/td-agent.conf
+#echo ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
+#echo "ELASTICSEARCH_URL is ${ELASTICSEARCH_URL}"
+#sed -i "s/\${ELASTICSEARCH_URL}/${ELASTICSEARCH_URL}/g" /etc/td-agent/td-agent.conf
 # Install prerequisites.
 apt-get update
 
