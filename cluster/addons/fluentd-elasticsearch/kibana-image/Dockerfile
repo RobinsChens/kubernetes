@@ -20,6 +20,7 @@ MAINTAINER Satnam Singh "satnam@google.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV ELASTICSEARCH_URL=http://localhost:9200
 RUN apt-get update && \
     apt-get install -y curl && \
     apt-get clean

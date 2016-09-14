@@ -14,6 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-"http://localhost:9200"}
+#export ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-"http://localhost:9200"}
 echo ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
 /kibana-4.0.2-linux-x64/bin/kibana -e ${ELASTICSEARCH_URL}

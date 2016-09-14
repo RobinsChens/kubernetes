@@ -18,20 +18,20 @@
 # TODO(a-robinson): Use a lighter base image, e.g. some form of busybox.
 # The image acts as an executable for the binary /usr/sbin/td-agent.
 # Note that fluentd is run with root permssion to allow access to
-# log files with root only access under /var/log/containers/*
+# log files with root only access under /var/log/containers/*INTAINER Alex Robinson "arob@google.com"
 # Please see http://docs.fluentd.org/articles/install-by-deb for more
 # information about installing fluentd using deb package.
 
 FROM hub.docker.vpclub.cn/vpclub_containers/ubuntu-slim:0.4
 MAINTAINER Alex Robinson "arob@google.com"
 MAINTAINER Jimmi Dyson "jimmidyson@gmail.com"
-
+MAINTAINER Robins Chen "chen.wei@vpclub.cn"
 # Ensure there are enough file descriptors for running Fluentd.
 RUN ulimit -n 65536
 
 # Disable prompts from apt.
 ENV DEBIAN_FRONTEND noninteractive
-
+ENV ELASTICSEARCH_URL localhost:9200
 # Copy the Fluentd configuration file.
 COPY td-agent.conf /etc/td-agent/td-agent.conf
 

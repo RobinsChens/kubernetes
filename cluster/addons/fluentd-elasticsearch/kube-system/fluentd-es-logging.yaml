@@ -11,8 +11,7 @@ spec:
   dnsPolicy: "ClusterFirst"
   containers:
   - name: fluentd-logging
-#    image: fabric8/fluentd-kubernetes
-    image: hub.docker.vpclub.cn/vpclub_containers/fluentd-elasticsearch:1.20
+    image: hub.docker.vpclub.cn/vpclub_containers/fluentd-elasticsearch:1.20-1
     resources:
       limits:
         memory: 200Mi
@@ -20,11 +19,8 @@ spec:
         cpu: 100m
         memory: 200Mi
     env:
-    - name: ES_HOST
-#      value: http://192.168.3.143
-      value: http://elasticsearch.kube-system.svc
-    - name: ES_PORT
-      value: "9200"    
+    - name: "ELASTICSEARCH_URL"
+      value: "http://192.168.3.164:9200"
     - name: TZ
       value: Asia/Shanghai
     volumeMounts:

@@ -13,8 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
+#insert ELASTICSEARCH_URL
+echo ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
+sed -i "s/\${ELASTICSEARCH_URL}/${ELASTICSEARCH_URL}/g" /etc/td-agent/td-agent.conf
 # Install prerequisites.
 apt-get update
 
