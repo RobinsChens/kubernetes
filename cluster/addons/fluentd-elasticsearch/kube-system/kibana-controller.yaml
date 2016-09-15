@@ -35,7 +35,7 @@ spec:
             cpu: 100m
         env:
           - name: "ELASTICSEARCH_URL"
-            value: "http://192.168.3.164:9200"
+            value: "http://${ELASTICSEARCH_HOST}:9200"
           - name: TZ
             value: Asia/Shanghai
         ports:

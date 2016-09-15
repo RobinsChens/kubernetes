@@ -20,7 +20,7 @@ spec:
         memory: 200Mi
     env:
     - name: "ELASTICSEARCH_URL"
-      value: "192.168.3.164"
+      value: "${ELASTICSEARCH_HOST}"
     - name: TZ
       value: Asia/Shanghai
     volumeMounts:
